@@ -39,7 +39,7 @@
 <main>
 <section id="home" class="hero cinematic-hero">
 <div class="hero-frames" aria-hidden="true"><div class="hero-frame active" style="background-image:url('assets/IMG_4576.webp')"></div></div>
-<div class="hero-inner"><h1 id="hero-message" aria-live="off">Dubai Interior Design &amp;<br>Fit-Out Specialists</h1><p>For Homeowners, Interior Designers &amp; Businesses</p></div>
+<div class="hero-inner"><h1 id="hero-message" aria-live="off">Dubai Interior Design &amp;<br>Fit-Out Specialists</h1><p>For Interior Designers and Property Owners</p></div>
 <div class="hero-controls" aria-label="Homepage slides"><button type="button" class="hero-arrow" data-dir="-1" aria-label="Previous slide">‹</button><button type="button" class="hero-dot active" data-slide="0" aria-label="Slide 1"></button><button type="button" class="hero-dot" data-slide="1" aria-label="Slide 2"></button><button type="button" class="hero-dot" data-slide="2" aria-label="Slide 3"></button><button type="button" class="hero-arrow" data-dir="1" aria-label="Next slide">›</button></div>
 </section>
 <section id="fitout" class="wrap"><div class="sectionhead"><div><div class="eyebrow">01 / Our expertise</div><h2>Beautiful spaces.<br>Thoughtfully delivered.</h2></div><p>From design concepts to the final interior details, Z4YN focuses on practical layouts, refined finishes and spaces made around the way you live and work.</p></div>
@@ -101,6 +101,6 @@ setInterval(advanceFitnessSlides,2000)
  function showSlide(i){active=(i+headlines.length)%headlines.length;title.innerHTML=headlines[active];dots.forEach((dot,n)=>dot.classList.toggle('active',n===active));}
  host.querySelectorAll('.hero-arrow').forEach(btn=>btn.addEventListener('click',()=>showSlide(active+Number(btn.dataset.dir))));
  dots.forEach((dot,n)=>dot.addEventListener('click',()=>showSlide(n)));
- setInterval(()=>showSlide(active+1),5000);
+ setInterval(()=>showSlide(active+1),2000);
 })();
 </script>
