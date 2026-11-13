@@ -33,6 +33,15 @@
 .hero-controls .hero-dot.active{width:28px;background:white}
 @media(max-width:900px){.nav .links{background:#171613}.nav .menu{color:white}}
 @media(max-width:580px){.cinematic-hero{min-height:620px;padding:140px 8% 120px}.cinematic-hero h1{font-size:clamp(30px,7vw,40px)}.cinematic-hero p{font-size:18px}.nav{height:78px}.nav .logo{font-size:29px}.hero-controls{bottom:35px}}
+
+/* Photo-led first page: text stays directly on the interior image */
+.cinematic-hero .hero-frames{z-index:0}
+.cinematic-hero .hero-frame{background-position:center center;background-repeat:no-repeat;background-size:cover;filter:brightness(.89) saturate(1.08)}
+.cinematic-hero .hero-frames:after{background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.27) 35%,rgba(0,0,0,.43) 72%,rgba(0,0,0,.53) 100%)}
+.cinematic-hero .hero-inner{z-index:2;position:relative;margin:auto;text-align:center;padding:30px 18px}
+.cinematic-hero .hero-inner h1{color:#fff;text-shadow:0 3px 16px rgba(0,0,0,.8);max-width:100%;font-weight:750}
+.cinematic-hero .hero-inner p{color:white;text-shadow:0 2px 10px rgba(0,0,0,.85);font-weight:500}
+@media(max-width:580px){.cinematic-hero .hero-inner{padding:20px 0}.cinematic-hero .hero-frame{background-position:center center}.cinematic-hero h1{line-height:1.18}}
 </style></head><body>
 <div class="topbar"><span>DUBAI, UNITED ARAB EMIRATES</span><span>INTERIOR DESIGN&nbsp; • &nbsp; INTERIOR FIT-OUT&nbsp; • &nbsp; BESPOKE JOINERY</span></div>
 <header class="nav"><a class="logo" href="#home">Z<span>4</span>YN</a><button class="menu" aria-label="Toggle menu" onclick="document.querySelector('.links').classList.toggle('show')">☰</button><nav class="links"><a class="active" href="#home">Home</a><a href="#fitout">Design & Fit-Out</a><a href="#fitout">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a href="#contact" class="cta">Get in Touch</a></header>
