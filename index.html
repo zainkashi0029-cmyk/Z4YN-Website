@@ -43,17 +43,22 @@
 .cinematic-hero .hero-inner p{color:white;text-shadow:0 2px 10px rgba(0,0,0,.85);font-weight:500}
 @media(max-width:580px){.cinematic-hero .hero-inner{padding:20px 0}.cinematic-hero .hero-frame{background-position:center center}.cinematic-hero h1{line-height:1.18}}
 
-/* Premium trusted partners area — no unauthorized client logos */
-.z4yn-partners{background:#fff;color:#1c1c1c;text-align:center;padding:72px 22px 75px}
-.z4yn-partners-inner{max-width:1060px;margin:auto}
-.z4yn-partners h2{font:700 clamp(29px,4vw,43px) Arial,Helvetica,sans-serif;margin:0 0 38px}
-.z4yn-partner-stage{height:118px;display:flex;align-items:center;justify-content:center;gap:40px}
-.z4yn-partner-line{height:1px;width:25%;max-width:220px;background:linear-gradient(90deg,transparent,#c6b595,transparent)}
-.z4yn-partner-mark{font-size:36px;font-weight:750;letter-spacing:9px;color:#b8b8b8}
-.z4yn-partner-mark span{color:#bd9a63}
-.z4yn-partner-status{margin:0 auto 27px;max-width:620px;font-size:13px;line-height:1.7;color:#999;letter-spacing:.3px}
-.z4yn-partner-audience{margin:0 auto;max-width:800px;font-weight:600;font-size:clamp(13px,2vw,17px);line-height:1.7;color:#707070;letter-spacing:1.1px;text-transform:uppercase}
-@media(max-width:620px){.z4yn-partners{padding:55px 18px 60px}.z4yn-partners h2{margin-bottom:19px}.z4yn-partner-stage{height:100px;gap:18px}.z4yn-partner-mark{font-size:28px;letter-spacing:6px}}
+/* HALO-inspired marquee with text wordmarks, not official logo image assets */
+.z4yn-partners{background:#fff;color:#181818;text-align:center;padding:72px 0 68px;overflow:hidden}
+.z4yn-partners-inner{max-width:1250px;margin:auto}
+.z4yn-partners h2{font:700 clamp(30px,4vw,44px) Arial,Helvetica,sans-serif;margin:0 20px 43px}
+.z4yn-marquee{width:100%;overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.z4yn-marquee-track{display:flex;align-items:center;width:max-content;gap:70px;animation:z4ynPartnerScroll 38s linear infinite;padding:22px 0 32px}
+.z4yn-partner-wordmark{display:inline-flex;align-items:center;justify-content:center;min-width:145px;white-space:nowrap;color:#777;filter:grayscale(1);font-size:23px;font-weight:700;letter-spacing:-.5px}
+.z4yn-partner-wordmark-2,.z4yn-partner-wordmark-8{letter-spacing:2px;font-weight:800}
+.z4yn-partner-wordmark-3,.z4yn-partner-wordmark-5{font:italic 29px Georgia,serif}
+.z4yn-partner-wordmark-4{font-size:19px;letter-spacing:.1px}
+.z4yn-partner-wordmark-6{font:26px Georgia,serif}
+.z4yn-partner-wordmark-7{font:23px Georgia,serif}
+.z4yn-partner-audience{margin:31px auto 0;padding:0 22px;max-width:800px;color:#888;font-size:clamp(13px,1.8vw,18px);font-weight:600;letter-spacing:1px;text-transform:uppercase;line-height:1.7}
+@keyframes z4ynPartnerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:600px){.z4yn-partners{padding:55px 0 55px}.z4yn-partners h2{margin-bottom:30px}.z4yn-marquee-track{gap:35px;animation-duration:32s}.z4yn-partner-wordmark{min-width:120px;font-size:19px}}
+@media(prefers-reduced-motion:reduce){.z4yn-marquee-track{animation:none}}
 </style></head><body>
 <div class="topbar"><span>DUBAI, UNITED ARAB EMIRATES</span><span>INTERIOR DESIGN&nbsp; • &nbsp; INTERIOR FIT-OUT&nbsp; • &nbsp; BESPOKE JOINERY</span></div>
 <header class="nav"><a class="logo" href="#home">Z<span>4</span>YN</a><button class="menu" aria-label="Toggle menu" onclick="document.querySelector('.links').classList.toggle('show')">☰</button><nav class="links"><a class="active" href="#home">Home</a><a href="#fitout">Design & Fit-Out</a><a href="#fitout">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a href="#contact" class="cta">Get in Touch</a></header>
@@ -66,13 +71,8 @@
 <section id="z4yn-audiences" class="z4yn-partners" aria-label="Our Trusted Partners">
 <div class="z4yn-partners-inner">
 <h2>Our Trusted Partners</h2>
-<div class="z4yn-partner-stage" aria-label="Partner logos pending confirmation">
-<div class="z4yn-partner-line"></div>
-<span class="z4yn-partner-mark">Z<span>4</span>YN</span>
-<div class="z4yn-partner-line"></div>
-</div>
-<p class="z4yn-partner-status">Partner logos will be displayed here once collaborations are confirmed</p>
-<p class="z4yn-partner-audience">For Property Owners, Interior Designers, Consultants and Contractors</p>
+<div class="z4yn-marquee" aria-label="Dubai Properties, ISKON, Jumeirah, Majid Al Futtaim, One&amp;Only, Rotana, Sheraton, SIEMENS"><div class="z4yn-marquee-track"><span class="z4yn-partner-wordmark z4yn-partner-wordmark-1">Dubai Properties</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-2">ISKON</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-3">Jumeirah</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-4">Majid Al Futtaim</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-5">One&amp;Only</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-6">Rotana</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-7">Sheraton</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-8">SIEMENS</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-1">Dubai Properties</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-2">ISKON</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-3">Jumeirah</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-4">Majid Al Futtaim</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-5">One&amp;Only</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-6">Rotana</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-7">Sheraton</span><span class="z4yn-partner-wordmark z4yn-partner-wordmark-8">SIEMENS</span></div></div>
+<p class="z4yn-partner-audience">Our clients include Property Owners, Interior Designers, Consultants and Contractors</p>
 </div></section>
 <section id="fitout" class="wrap"><div class="sectionhead"><div><div class="eyebrow">01 / Our expertise</div><h2>Beautiful spaces.<br>Thoughtfully delivered.</h2></div><p>From design concepts to the final interior details, Z4YN focuses on practical layouts, refined finishes and spaces made around the way you live and work.</p></div>
 <div class="grid3">
