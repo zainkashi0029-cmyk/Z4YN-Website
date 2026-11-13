@@ -86,10 +86,8 @@ setInterval(advanceFitnessSlides,2000)
 })();
 </script><script>
 (function(){
- const host=document.querySelector('.cinematic-hero');if(!host)return;
- const frames=[...host.querySelectorAll('.<script>
-(function(){
- const host=document.querySelector('.cinematic-hero');if(!host)return;
+ const host=document.querySelector('.cinematic-hero');
+ if(!host)return;
  const title=host.querySelector('#hero-message');
  const dots=[...host.querySelectorAll('.hero-dot')];
  const headlines=[
@@ -97,10 +95,15 @@ setInterval(advanceFitnessSlides,2000)
   'Transforming Homes &amp;<br>Commercial Spaces in Dubai',
   'Complete Interior Fit-Out,<br>Design &amp; Bespoke Joinery'
  ];
+ if(!title||dots.length!==3)return;
  let active=0;
- function showSlide(i){active=(i+headlines.length)%headlines.length;title.innerHTML=headlines[active];dots.forEach((dot,n)=>dot.classList.toggle('active',n===active));}
+ function showSlide(i){
+  active=(i+headlines.length)%headlines.length;
+  title.innerHTML=headlines[active];
+  dots.forEach((dot,n)=>dot.classList.toggle('active',n===active));
+ }
  host.querySelectorAll('.hero-arrow').forEach(btn=>btn.addEventListener('click',()=>showSlide(active+Number(btn.dataset.dir))));
  dots.forEach((dot,n)=>dot.addEventListener('click',()=>showSlide(n)));
  setInterval(()=>showSlide(active+1),2000);
 })();
-</script>
+</script></body></html>
