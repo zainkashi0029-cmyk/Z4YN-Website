@@ -1,0 +1,95 @@
+{
+  "projects": [
+    {
+      "id": "p1",
+      "title": "Luxury Living Room",
+      "category": "Residential",
+      "subtitle": "Residential interiors",
+      "images": [
+        "assets/IMG_4576.webp"
+      ]
+    },
+    {
+      "id": "p2",
+      "title": "Illuminated Staircase",
+      "category": "Residential",
+      "subtitle": "Residential interiors",
+      "images": [
+        "assets/IMG_4577.webp"
+      ]
+    },
+    {
+      "id": "p3",
+      "title": "Villa Dining Area",
+      "category": "Residential",
+      "subtitle": "Residential interiors",
+      "images": [
+        "assets/IMG_4573.webp"
+      ]
+    },
+    {
+      "id": "p4",
+      "title": "Feature Wall & Lighting",
+      "category": "Commercial",
+      "subtitle": "Commercial interiors",
+      "images": [
+        "assets/IMG_4042.webp"
+      ]
+    },
+    {
+      "id": "p5",
+      "title": "Modern Meeting Room",
+      "category": "Commercial",
+      "subtitle": "Commercial interiors",
+      "images": [
+        "assets/IMG_4038.webp"
+      ]
+    },
+    {
+      "id": "p6",
+      "title": "Office Reception",
+      "category": "Commercial",
+      "subtitle": "Commercial interiors",
+      "images": [
+        "assets/IMG_4017.webp"
+      ]
+    },
+    {
+      "id": "p7",
+      "title": "Reception Lounge",
+      "category": "Commercial",
+      "subtitle": "Commercial interiors",
+      "images": [
+        "assets/IMG_4013.webp"
+      ]
+    },
+    {
+      "id": "p8",
+      "title": "Bespoke Interior Details",
+      "category": "Commercial",
+      "subtitle": "Commercial interiors",
+      "images": [
+        "assets/IMG_4004.webp"
+      ]
+    },
+    {
+      "id": "p9",
+      "title": "Decorative Feature Wall",
+      "category": "Residential",
+      "subtitle": "Residential interiors",
+      "images": [
+        "assets/IMG_2882.webp"
+      ]
+    },
+    {
+      "id": "p10",
+      "title": "Fitness Studio Interior",
+      "category": "Commercial",
+      "subtitle": "Commercial fit-out · Reformer studio",
+      "images": [
+        "IMG_5876.jpeg",
+        "IMG_5880.jpeg"
+      ]
+    }
+  ]
+}
