@@ -49,7 +49,7 @@
 .z4yn-partners h2{font:700 clamp(30px,4vw,44px) Arial,Helvetica,sans-serif;margin:0 20px 43px}
 .z4yn-marquee{width:100%;overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .z4yn-marquee-track{display:flex;align-items:center;width:max-content;gap:70px;animation:z4ynPartnerScroll 38s linear infinite;padding:22px 0 32px}
-.z4yn-partner-wordmark{display:inline-flex;align-items:center;justify-content:center;min-width:145px;white-space:nowrap;color:#777;filter:grayscale(1);font-size:23px;font-weight:700;letter-spacing:-.5px}
+.z4yn-partner-wordmark{display:inline-flex;align-items:center;justify-content:center;min-width:145px;white-space:nowrap;color:#777;filter:grayscale(1);font-size:23px;font-weight:700;letter-spacing:-.5px;cursor:pointer;transition:color .25s ease,filter .25s ease,transform .25s ease;touch-action:manipulation}
 .z4yn-partner-wordmark-2,.z4yn-partner-wordmark-8{letter-spacing:2px;font-weight:800}
 .z4yn-partner-wordmark-3,.z4yn-partner-wordmark-5{font:italic 29px Georgia,serif}
 .z4yn-partner-wordmark-4{font-size:19px;letter-spacing:.1px}
@@ -59,6 +59,18 @@
 @keyframes z4ynPartnerScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:600px){.z4yn-partners{padding:55px 0 55px}.z4yn-partners h2{margin-bottom:30px}.z4yn-marquee-track{gap:35px;animation-duration:32s}.z4yn-partner-wordmark{min-width:120px;font-size:19px}}
 @media(prefers-reduced-motion:reduce){.z4yn-marquee-track{animation:none}}
+
+/* Touch and hover reveal distinct brand-inspired colors on text wordmarks */
+.z4yn-partner-wordmark:is(:hover,:focus-visible,.is-color){filter:none;transform:scale(1.06)}
+.z4yn-partner-wordmark-1:is(:hover,:focus-visible,.is-color){color:#1779be}
+.z4yn-partner-wordmark-2:is(:hover,:focus-visible,.is-color){color:#b88333}
+.z4yn-partner-wordmark-3:is(:hover,:focus-visible,.is-color){color:#b59147}
+.z4yn-partner-wordmark-4:is(:hover,:focus-visible,.is-color){color:#d49718}
+.z4yn-partner-wordmark-5:is(:hover,:focus-visible,.is-color){color:#9c7845}
+.z4yn-partner-wordmark-6:is(:hover,:focus-visible,.is-color){color:#8c202b}
+.z4yn-partner-wordmark-7:is(:hover,:focus-visible,.is-color){color:#8a6b42}
+.z4yn-partner-wordmark-8:is(:hover,:focus-visible,.is-color){color:#009999}
+.z4yn-marquee:has(.z4yn-partner-wordmark:is(:hover,:focus-visible,.is-color)) .z4yn-marquee-track{animation-play-state:paused}
 </style></head><body>
 <div class="topbar"><span>DUBAI, UNITED ARAB EMIRATES</span><span>INTERIOR DESIGN&nbsp; • &nbsp; INTERIOR FIT-OUT&nbsp; • &nbsp; BESPOKE JOINERY</span></div>
 <header class="nav"><a class="logo" href="#home">Z<span>4</span>YN</a><button class="menu" aria-label="Toggle menu" onclick="document.querySelector('.links').classList.toggle('show')">☰</button><nav class="links"><a class="active" href="#home">Home</a><a href="#fitout">Design & Fit-Out</a><a href="#fitout">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a href="#contact" class="cta">Get in Touch</a></header>
@@ -137,5 +149,21 @@ setInterval(advanceFitnessSlides,2000)
  host.querySelectorAll('.hero-arrow').forEach(btn=>btn.addEventListener('click',()=>showSlide(active+Number(btn.dataset.dir))));
  dots.forEach((dot,n)=>dot.addEventListener('click',()=>showSlide(n)));
  setInterval(()=>showSlide(active+1),2000);
+})();
+</script><script>
+(function(){
+ const strip=document.querySelector('#z4yn-audiences');
+ if(!strip)return;
+ strip.querySelectorAll('.z4yn-partner-wordmark').forEach(el=>{
+  el.tabIndex=0;
+  el.setAttribute('role','button');
+  el.setAttribute('aria-label','Show '+el.textContent+' in color');
+  const activate=()=>{
+   strip.querySelectorAll('.z4yn-partner-wordmark.is-color').forEach(node=>{if(node!==el)node.classList.remove('is-color')});
+   el.classList.toggle('is-color');
+  };
+  el.addEventListener('click',activate);
+  el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate()}});
+ });
 })();
 </script></body></html>
