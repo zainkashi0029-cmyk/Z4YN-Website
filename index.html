@@ -38,8 +38,8 @@
 <header class="nav"><a class="logo" href="#home">Z<span>4</span>YN</a><button class="menu" aria-label="Toggle menu" onclick="document.querySelector('.links').classList.toggle('show')">☰</button><nav class="links"><a class="active" href="#home">Home</a><a href="#fitout">Design & Fit-Out</a><a href="#fitout">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a href="#contact" class="cta">Get in Touch</a></header>
 <main>
 <section id="home" class="hero cinematic-hero">
-<div class="hero-frames" aria-hidden="true"><div class="hero-frame active" style="background-image:url('assets/IMG_4576.webp')"></div><div class="hero-frame" style="background-image:url('assets/IMG_4577.webp')"></div><div class="hero-frame" style="background-image:url('assets/IMG_4038.webp')"></div></div>
-<div class="hero-inner"><h1>Interior Design &amp; Fit-Out<br>Specialists in Dubai</h1><p>For Homeowners, Interior Designers &amp; Businesses</p></div>
+<div class="hero-frames" aria-hidden="true"><div class="hero-frame active" style="background-image:url('assets/IMG_4576.webp')"></div></div>
+<div class="hero-inner"><h1 id="hero-message" aria-live="off">Dubai Interior Design &amp;<br>Fit-Out Specialists</h1><p>For Homeowners, Interior Designers &amp; Businesses</p></div>
 <div class="hero-controls" aria-label="Homepage slides"><button type="button" class="hero-arrow" data-dir="-1" aria-label="Previous slide">‹</button><button type="button" class="hero-dot active" data-slide="0" aria-label="Slide 1"></button><button type="button" class="hero-dot" data-slide="1" aria-label="Slide 2"></button><button type="button" class="hero-dot" data-slide="2" aria-label="Slide 3"></button><button type="button" class="hero-arrow" data-dir="1" aria-label="Next slide">›</button></div>
 </section>
 <section id="fitout" class="wrap"><div class="sectionhead"><div><div class="eyebrow">01 / Our expertise</div><h2>Beautiful spaces.<br>Thoughtfully delivered.</h2></div><p>From design concepts to the final interior details, Z4YN focuses on practical layouts, refined finishes and spaces made around the way you live and work.</p></div>
@@ -87,10 +87,20 @@ setInterval(advanceFitnessSlides,2000)
 </script><script>
 (function(){
  const host=document.querySelector('.cinematic-hero');if(!host)return;
- const frames=[...host.querySelectorAll('.hero-frame')],dots=[...host.querySelectorAll('.hero-dot')];let active=0;
- function showSlide(i){active=(i+frames.length)%frames.length;frames.forEach((x,n)=>x.classList.toggle('active',n===active));dots.forEach((x,n)=>x.classList.toggle('active',n===active));}
- host.querySelectorAll('.hero-arrow').forEach(b=>b.addEventListener('click',()=>showSlide(active+Number(b.dataset.dir))));
- dots.forEach((b,n)=>b.addEventListener('click',()=>showSlide(n)));
+ const frames=[...host.querySelectorAll('.<script>
+(function(){
+ const host=document.querySelector('.cinematic-hero');if(!host)return;
+ const title=host.querySelector('#hero-message');
+ const dots=[...host.querySelectorAll('.hero-dot')];
+ const headlines=[
+  'Dubai Interior Design &amp;<br>Fit-Out Specialists',
+  'Transforming Homes &amp;<br>Commercial Spaces in Dubai',
+  'Complete Interior Fit-Out,<br>Design &amp; Bespoke Joinery'
+ ];
+ let active=0;
+ function showSlide(i){active=(i+headlines.length)%headlines.length;title.innerHTML=headlines[active];dots.forEach((dot,n)=>dot.classList.toggle('active',n===active));}
+ host.querySelectorAll('.hero-arrow').forEach(btn=>btn.addEventListener('click',()=>showSlide(active+Number(btn.dataset.dir))));
+ dots.forEach((dot,n)=>dot.addEventListener('click',()=>showSlide(n)));
  setInterval(()=>showSlide(active+1),5000);
 })();
-</script></body></html>
+</script>
