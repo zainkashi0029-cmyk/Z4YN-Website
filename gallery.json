@@ -83,12 +83,23 @@
     },
     {
       "id": "p10",
-      "title": "Fitness Studio Interior",
+      "title": "Fitness Studio & Wooden Interior",
       "category": "Commercial",
-      "subtitle": "Commercial fit-out · Reformer studio",
+      "subtitle": "Fitness studio · Wood-clad interiors",
       "images": [
         "IMG_5876.jpeg",
-        "IMG_5880.jpeg"
+        "IMG_5880.jpeg",
+        "https://raw.githubusercontent.com/zainkashi0029-cmyk/Z4YN-Website/6532abc792c892603cc540f90fe921cbf1add168/IMG_5875.jpeg",
+        "https://raw.githubusercontent.com/zainkashi0029-cmyk/Z4YN-Website/6532abc792c892603cc540f90fe921cbf1add168/IMG_5885.jpeg"
+      ]
+    },
+    {
+      "id": "p11",
+      "title": "Luxury Washroom",
+      "category": "Commercial",
+      "subtitle": "Marble vanity · Bespoke washroom",
+      "images": [
+        "https://raw.githubusercontent.com/zainkashi0029-cmyk/Z4YN-Website/6532abc792c892603cc540f90fe921cbf1add168/IMG_5872.jpeg"
       ]
     }
   ]
