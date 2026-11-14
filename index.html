@@ -175,6 +175,20 @@ body{background:#fff}
 .z4yn-introduction p{font-size:clamp(17px,2vw,24px);font-weight:300;line-height:1.9;margin:0 auto;max-width:900px}
 .z4yn-intro-link{display:inline-flex;gap:22px;align-items:center;margin-top:33px;padding-bottom:9px;border-bottom:1px solid #8b806f;font-size:12px;letter-spacing:2px;text-transform:uppercase}
 @media(max-width:700px){.nav{height:87px!important;padding:0 4%!important}.nav .logo{font-size:29px!important}.nav>.cta{font-size:0!important;padding:15px 17px!important}.nav>.cta:before{content:'✉';font-size:20px}.nav .menu{font-size:29px!important}.cinematic-hero{height:650px!important;min-height:650px!important;padding:105px 7% 80px!important}.z4yn-hero-kicker{font-size:14px!important;letter-spacing:3px!important;line-height:1.75!important;margin-bottom:27px!important}.cinematic-hero .hero-inner h1{font-size:clamp(32px,7.1vw,50px)!important;letter-spacing:-.5px!important;line-height:1.24!important}.cinematic-hero .hero-inner p{font-size:13px!important}.z4yn-introduction{padding:92px 6% 99px}.z4yn-intro-overline{letter-spacing:4px;font-size:13px}.z4yn-introduction h2{font-size:46px;margin:36px 0 42px}.z4yn-introduction p{font-size:19px;line-height:1.8}.cinematic-hero .hero-controls{bottom:19px!important}}
+
+/* Compact white navigation and hide hero carousel controls */
+.nav{height:72px!important;min-height:72px!important}
+.nav .logo{font-size:27px!important;letter-spacing:3px!important}
+.nav .menu{font-size:25px!important;padding:5px!important}
+.nav>.cta{padding:13px 16px!important;font-size:9px!important}
+.cinematic-hero .hero-controls{display:none!important}
+@media(max-width:700px){
+ .nav{height:65px!important;min-height:65px!important}
+ .nav .logo{font-size:25px!important}
+ .nav .menu{font-size:25px!important}
+ .nav>.cta{padding:11px 13px!important}
+ .nav>.cta:before{font-size:17px!important}
+}
 </style></head><body>
 <div class="topbar"><span>DUBAI, UNITED ARAB EMIRATES</span><span>INTERIOR DESIGN&nbsp; • &nbsp; INTERIOR FIT-OUT&nbsp; • &nbsp; BESPOKE JOINERY</span></div>
 <header class="nav"><a class="logo" href="#home">Z<span>4</span>YN</a><button class="menu" aria-label="Toggle menu" onclick="document.querySelector('.links').classList.toggle('show')">☰</button><nav class="links"><a class="active" href="#home">Home</a><a href="#fitout">Design & Fit-Out</a><a href="#z4yn-four-services">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a href="#contact" class="cta">Get in Touch</a></header>
@@ -182,7 +196,7 @@ body{background:#fff}
 <section id="home" class="hero cinematic-hero">
 <div class="hero-frames" aria-hidden="true"><div class="hero-frame active" style="background-image:url('6224A7BC-592C-4949-9CFD-A8368D939929.jpeg')"></div></div>
 <div class="hero-inner"><span class="z4yn-hero-kicker">WELCOME TO Z4YN INTERIOR DESIGN &amp; FIT-OUT</span><h1 id="hero-message" aria-live="off">Spaces With Purpose.<br>Designed With Distinction.</h1><p>Interior Design. Fit-Out. Bespoke Joinery.</p></div>
-<div class="hero-controls" aria-label="Homepage slides"><button type="button" class="hero-arrow" data-dir="-1" aria-label="Previous slide">‹</button><button type="button" class="hero-dot active" data-slide="0" aria-label="Slide 1"></button><button type="button" class="hero-dot" data-slide="1" aria-label="Slide 2"></button><button type="button" class="hero-dot" data-slide="2" aria-label="Slide 3"></button><button type="button" class="hero-arrow" data-dir="1" aria-label="Next slide">›</button></div>
+
 </section>
 <section class="z4yn-introduction" id="who-we-are" aria-labelledby="z4yn-intro-title">
   <div class="z4yn-introduction-inner">
@@ -261,7 +275,7 @@ setInterval(advanceFitnessSlides,2000)
   'Exceptional Interiors.<br>Thoughtfully Delivered.',
   'Interior Fit-Out.<br>Design &amp; Bespoke Joinery.'
  ];
- if(!title||dots.length!==3)return;
+ if(!title)return;
  let active=0;
  function showSlide(i){
   active=(i+headlines.length)%headlines.length;
