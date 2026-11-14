@@ -189,9 +189,18 @@ body{background:#fff}
  .nav>.cta{padding:11px 13px!important}
  .nav>.cta:before{font-size:17px!important}
 }
+
+/* Z4YN navigation: logo left, eye menu right */
+.nav{display:flex!important;align-items:center!important;justify-content:space-between!important;grid-template-columns:none!important;padding:0 clamp(16px,4vw,60px)!important}
+.nav .logo{grid-column:auto!important;grid-row:auto!important;justify-self:auto!important;margin:0!important;order:0}
+.nav .z4yn-eye-menu{grid-column:auto!important;grid-row:auto!important;order:2!important;display:flex!important;align-items:center;justify-content:center;width:44px;height:44px;color:#292723!important;background:#f5f4f1!important;border:1px solid #e7e4dd!important;border-radius:2px;padding:0!important;line-height:1!important}
+.nav .z4yn-eye-menu:hover,.nav .z4yn-eye-menu[aria-expanded="true"]{background:#e9e0d1!important;color:#81643e!important}
+.nav .z4yn-eye-menu svg{display:block;width:25px;height:25px}
+.nav .links{order:3;top:100%!important}
+@media(max-width:700px){.nav{padding:0 18px!important}.nav .z4yn-eye-menu{width:40px;height:40px}.nav .logo{font-size:26px!important}}
 </style></head><body>
 <div class="topbar"><span>DUBAI, UNITED ARAB EMIRATES</span><span>INTERIOR DESIGN&nbsp; • &nbsp; INTERIOR FIT-OUT&nbsp; • &nbsp; BESPOKE JOINERY</span></div>
-<header class="nav"><a class="logo" href="#home">Z<span>4</span>YN</a><button class="menu" aria-label="Toggle menu" onclick="document.querySelector('.links').classList.toggle('show')">☰</button><nav class="links"><a class="active" href="#home">Home</a><a href="#fitout">Design & Fit-Out</a><a href="#z4yn-four-services">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a href="#contact" class="cta">Get in Touch</a></header>
+<header class="nav"><a class="logo" href="#home">Z<span>4</span>YN</a><button class="menu z4yn-eye-menu" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="z4yn-nav-links" onclick="const links=document.getElementById('z4yn-nav-links');const open=links.classList.toggle('show');this.setAttribute('aria-expanded',String(open));this.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3.2"/></svg></button><nav id="z4yn-nav-links" class="links"><a class="active" href="#home">Home</a><a href="#fitout">Design & Fit-Out</a><a href="#z4yn-four-services">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav></header>
 <main>
 <section id="home" class="hero cinematic-hero">
 <div class="hero-frames" aria-hidden="true"><div class="hero-frame active" style="background-image:url('6224A7BC-592C-4949-9CFD-A8368D939929.jpeg')"></div></div>
