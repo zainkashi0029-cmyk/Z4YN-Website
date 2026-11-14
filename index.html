@@ -100,6 +100,12 @@
 .z4yn-four-body p{color:#69635b;font-size:14px;line-height:1.75;margin:0 0 20px}
 .z4yn-four-body a{margin-top:auto;align-self:flex-start;color:#806038;border-bottom:1px solid #b89968;font-size:12px;letter-spacing:1.4px;padding-bottom:7px}
 @media(max-width:850px){.z4yn-four-card{flex-basis:calc((100% - 16px)/2)}}@media(max-width:600px){.z4yn-four{padding:65px 6%}.z4yn-four-card{flex-basis:88%}.z4yn-four-art{height:160px}.z4yn-four-body{min-height:225px;padding:21px}}
+
+/* Continuous, seamless four-service marquee: complete circuit in five minutes */
+#z4yn-four-services .z4yn-four-window{display:block;overflow:hidden;scroll-snap-type:none;touch-action:pan-y}
+#z4yn-four-services .z4yn-four-track{display:flex;gap:16px;width:max-content;will-change:transform}
+#z4yn-four-services .z4yn-four-card{flex:0 0 clamp(260px,29vw,370px);width:clamp(260px,29vw,370px);scroll-snap-align:none}
+@media(max-width:600px){#z4yn-four-services .z4yn-four-card{flex-basis:82vw;width:82vw}}
 </style></head><body>
 <div class="topbar"><span>DUBAI, UNITED ARAB EMIRATES</span><span>INTERIOR DESIGN&nbsp; • &nbsp; INTERIOR FIT-OUT&nbsp; • &nbsp; BESPOKE JOINERY</span></div>
 <header class="nav"><a class="logo" href="#home">Z<span>4</span>YN</a><button class="menu" aria-label="Toggle menu" onclick="document.querySelector('.links').classList.toggle('show')">☰</button><nav class="links"><a class="active" href="#home">Home</a><a href="#fitout">Design & Fit-Out</a><a href="#z4yn-four-services">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a href="#contact" class="cta">Get in Touch</a></header>
@@ -118,12 +124,12 @@
 
 <section id="z4yn-four-services" class="z4yn-four" aria-label="Our four services">
  <div class="z4yn-four-top"><div><div class="eyebrow">What we do</div><h2>Our Expertise</h2></div></div>
- <div class="z4yn-four-window" tabindex="0" aria-label="Swipe to explore our services">
+ <div class="z4yn-four-window" tabindex="0" aria-label="Automatically scrolling services"><div class="z4yn-four-track">
   <article class="z4yn-four-card" role="link" tabindex="0" aria-label="Read more about Carpentry and Joinery"><div class="z4yn-four-art"><span>01 / CRAFT</span></div><div class="z4yn-four-body"><h3>Carpentry &amp; Joinery</h3><p>Bespoke furniture, cabinetry, wall cladding and detailed woodwork for thoughtfully designed spaces.</p><a href="carpentry-joinery.html">READ MORE →</a></div></article>
   <article class="z4yn-four-card" role="link" tabindex="0" aria-label="Read more about Turnkey Fit-Outs"><div class="z4yn-four-art"><span>02 / DELIVERY</span></div><div class="z4yn-four-body"><h3>Turnkey Fit-Outs</h3><p>Coordinated fit-out solutions for homes, workplaces and commercial interiors from concept to finishing.</p><a href="turnkey-fitouts.html">READ MORE →</a></div></article>
   <article class="z4yn-four-card" role="link" tabindex="0" aria-label="Read more about Decorative Walls and Floors"><div class="z4yn-four-art"><span>03 / FINISHES</span></div><div class="z4yn-four-body"><h3>Decorative Walls &amp; Floors</h3><p>Feature walls, textures and decorative floor finishes that give each interior its own character.</p><a href="decorative-walls-floors.html">READ MORE →</a></div></article>
   <article class="z4yn-four-card" role="link" tabindex="0" aria-label="Read more about Design Hub"><div class="z4yn-four-art"><span>04 / CONCEPT</span></div><div class="z4yn-four-body"><h3>Design Hub</h3><p>Space planning, material ideas and design coordination to help turn a vision into a clear direction.</p><a href="design-hub.html">READ MORE →</a></div></article>
- </div>
+ </div></div>
 </section>
 <section id="fitout" class="wrap"><div class="sectionhead"><div><div class="eyebrow">01 / Our expertise</div><h2>Beautiful spaces.<br>Thoughtfully delivered.</h2></div><p>From design concepts to the final interior details, Z4YN focuses on practical layouts, refined finishes and spaces made around the way you live and work.</p></div>
 <div class="grid3">
@@ -233,20 +239,40 @@ setInterval(advanceFitnessSlides,2000)
 })();
 </script><script>(function(){
  const section=document.getElementById('z4yn-four-services');if(!section)return;
- const rail=section.querySelector('.z4yn-four-window');const cards=[...rail.querySelectorAll('.z4yn-four-card')];
- // Move one service forward automatically every five minutes, then loop back to the first.
- let index=0;
- function advance(){
-  if(!cards.length)return;
-  index=(index+1)%cards.length;
-  rail.scrollTo({left:index===0?0:cards[index].offsetLeft-cards[0].offsetLeft,behavior:'smooth'});
- }
- let timer=setInterval(advance,300000);
- section.addEventListener('mouseenter',()=>clearInterval(timer));
- section.addEventListener('mouseleave',()=>{clearInterval(timer);timer=setInterval(advance,300000)});
+ const viewport=section.querySelector('.z4yn-four-window');
+ const track=section.querySelector('.z4yn-four-track');
+ const cards=[...track.querySelectorAll('.z4yn-four-card')];
+ if(cards.length!==4)return;
  cards.forEach(card=>{
-  const link=card.querySelector('.z4yn-four-body a');
-  card.addEventListener('click',event=>{if(event.target.closest('a'))return;if(link)location.href=link.href});
-  card.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&event.target===card){event.preventDefault();if(link)location.href=link.href}});
+  const link=card.querySelector('a[href]');
+  if(!link)return;
+  card.addEventListener('click',e=>{if(!e.target.closest('a'))location.href=link.href});
+  card.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();location.href=link.href}});
  });
+ // Duplicate the original set for seamless motion; duplicates link to the same detail pages.
+ cards.forEach(card=>{
+  const clone=card.cloneNode(true);
+  clone.removeAttribute('tabindex');clone.removeAttribute('role');clone.setAttribute('aria-hidden','true');
+  clone.addEventListener('click',e=>{const link=clone.querySelector('a[href]');if(link&&!e.target.closest('a'))location.href=link.href});
+  track.appendChild(clone);
+ });
+ let startTime=null,pausedAt=0,paused=false;
+ function animate(now){
+  if(startTime===null)startTime=now;
+  if(!paused){
+   const fifth=track.children[4];
+   const distance=fifth.offsetLeft-track.children[0].offsetLeft;
+   if(distance>0){
+    const elapsed=(now-startTime)%300000;
+    track.style.transform='translate3d('+(-distance*elapsed/300000)+'px,0,0)';
+   }
+  }
+  requestAnimationFrame(animate);
+ }
+ // Keep scrolling while the page remains visible; hold position while user explores a card.
+ section.addEventListener('mouseenter',()=>{paused=true;pausedAt=performance.now()});
+ section.addEventListener('mouseleave',()=>{if(paused){startTime+=performance.now()-pausedAt;paused=false}});
+ section.addEventListener('focusin',()=>{if(!paused){paused=true;pausedAt=performance.now()}});
+ section.addEventListener('focusout',e=>{if(!section.contains(e.relatedTarget)&&paused){startTime+=performance.now()-pausedAt;paused=false}});
+ requestAnimationFrame(animate);
 })();</script></body></html>
