@@ -112,13 +112,45 @@
 #z4yn-four-services .z4yn-four-card{cursor:pointer;user-select:none;-webkit-user-select:none}
 #z4yn-four-services .z4yn-four-card:focus-visible{outline:3px solid #c9a66b;outline-offset:-3px}
 #z4yn-four-services .z4yn-four-body{min-height:185px}
-#z4yn-four-services .z4yn-four-art{background-size:cover!important;background-position:center!important}#z4yn-four-services .z4yn-four-art:before{display:none}</style></head><body>
+#z4yn-four-services .z4yn-four-art{background-size:cover!important;background-position:center!important}#z4yn-four-services .z4yn-four-art:before{display:none}
+/* Z4YN editorial luxury homepage refresh — inspired by premium fit-out storytelling */
+.nav{height:96px;padding:0 clamp(22px,5vw,90px);background:linear-gradient(180deg,rgba(0,0,0,.56),transparent)!important;transition:background .25s}
+.nav .logo{font-family:Arial,Helvetica,sans-serif;font-size:31px;font-weight:800;letter-spacing:9px}
+.nav .links{gap:clamp(12px,2vw,30px);font-size:10px;letter-spacing:1.7px;font-weight:700}
+.nav>.cta{border-color:#c9a66b;color:#f4e4c5;padding:15px 20px;letter-spacing:1.8px}
+.cinematic-hero{min-height:700px;height:100svh;max-height:none;text-align:left!important;align-items:center!important;justify-content:flex-start!important;padding:125px clamp(24px,8vw,145px) 105px!important}
+.cinematic-hero .hero-frame{background-position:center 48%;transform:scale(1.035);animation:z4ynReveal 8s ease-out both}
+@keyframes z4ynReveal{from{transform:scale(1.12)}to{transform:scale(1.035)}}
+.cinematic-hero .hero-frames:after{background:linear-gradient(90deg,rgba(0,0,0,.77) 0%,rgba(0,0,0,.48) 46%,rgba(0,0,0,.12) 100%),linear-gradient(0deg,rgba(0,0,0,.6),transparent 36%,rgba(0,0,0,.18))!important}
+.cinematic-hero .hero-inner{margin:0!important;padding:25px 0!important;text-align:left!important;width:min(100%,950px);max-width:950px}
+.z4yn-hero-kicker{display:flex;align-items:center;gap:17px;color:#e8d2a5;letter-spacing:4px;font-size:11px;font-weight:700;margin-bottom:30px;text-shadow:0 2px 8px #0008}
+.z4yn-kicker-line{display:inline-block;width:54px;height:1px;background:#c9a66b}
+.cinematic-hero .hero-inner h1{font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(52px,6.5vw,104px)!important;font-weight:400!important;line-height:1.075!important;letter-spacing:-2.8px!important;margin:0 0 27px!important;max-width:960px;text-wrap:balance}
+.cinematic-hero .hero-inner p{font-size:clamp(15px,1.35vw,20px)!important;letter-spacing:.5px;font-weight:400!important;color:#f0e9df!important;max-width:610px!important}
+.z4yn-hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:40px}
+.z4yn-hero-primary,.z4yn-hero-secondary{min-height:57px;display:inline-flex;align-items:center;justify-content:space-between;gap:42px;padding:18px 23px;text-transform:uppercase;font-size:11px;letter-spacing:2px;font-weight:700;transition:background .25s,color .25s,transform .25s}
+.z4yn-hero-primary{background:#c9a66b;color:#15110c}
+.z4yn-hero-secondary{border:1px solid #ffffff8c;color:white}
+.z4yn-hero-primary:hover,.z4yn-hero-secondary:hover{transform:translateY(-3px)}
+.z4yn-hero-secondary:hover{background:white;color:#17130e}
+.z4yn-hero-primary span,.z4yn-hero-secondary span{font-size:18px}
+.z4yn-hero-side{position:absolute;right:31px;top:50%;writing-mode:vertical-rl;letter-spacing:4px;font-size:10px;color:#e5d8c4;z-index:3;opacity:.78}
+.z4yn-scroll-hint{position:absolute;left:clamp(24px,8vw,145px);bottom:35px;z-index:5;color:#eee1ca;font-size:10px;font-weight:700;letter-spacing:2.5px;display:flex;gap:18px;align-items:center}
+.z4yn-scroll-hint span{font-size:23px;color:#c9a66b}
+.cinematic-hero .hero-controls{left:auto;right:clamp(24px,8vw,145px);bottom:41px;width:auto;gap:12px}
+.cinematic-hero .hero-controls .hero-dot{height:5px;width:19px;border-radius:0;background:#ffffff66}
+.cinematic-hero .hero-controls .hero-dot.active{width:43px;background:#c9a66b}
+.cinematic-hero .hero-controls .hero-arrow{font-size:26px}
+@media(max-width:900px){.nav{height:78px}.nav .links{background:#11100ef2!important}.cinematic-hero{padding-left:7%!important;padding-right:7%!important}.z4yn-hero-side{display:none}.z4yn-scroll-hint{left:7%}.cinematic-hero .hero-controls{right:7%}}
+@media(max-width:580px){.cinematic-hero{height:100svh;min-height:650px;padding:115px 7% 120px!important}.cinematic-hero .hero-frames:after{background:linear-gradient(90deg,rgba(0,0,0,.70),rgba(0,0,0,.29)),linear-gradient(0deg,#0009,transparent 60%)!important}.cinematic-hero .hero-inner h1{font-size:clamp(42px,10.4vw,63px)!important;letter-spacing:-1.5px!important}.z4yn-hero-kicker{font-size:9px;letter-spacing:2.7px;margin-bottom:22px}.z4yn-kicker-line{width:30px}.z4yn-hero-actions{gap:11px;margin-top:30px}.z4yn-hero-primary,.z4yn-hero-secondary{font-size:9px;letter-spacing:1px;gap:12px;min-height:51px;padding:15px 13px}.cinematic-hero .hero-controls{bottom:75px;left:7%;right:auto}.z4yn-scroll-hint{bottom:26px;font-size:9px}}
+@media(prefers-reduced-motion:reduce){.cinematic-hero .hero-frame{animation:none}.z4yn-hero-primary,.z4yn-hero-secondary{transition:none}}
+</style></head><body>
 <div class="topbar"><span>DUBAI, UNITED ARAB EMIRATES</span><span>INTERIOR DESIGN&nbsp; • &nbsp; INTERIOR FIT-OUT&nbsp; • &nbsp; BESPOKE JOINERY</span></div>
 <header class="nav"><a class="logo" href="#home">Z<span>4</span>YN</a><button class="menu" aria-label="Toggle menu" onclick="document.querySelector('.links').classList.toggle('show')">☰</button><nav class="links"><a class="active" href="#home">Home</a><a href="#fitout">Design & Fit-Out</a><a href="#z4yn-four-services">Services</a><a href="#projects">Projects</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a href="#contact" class="cta">Get in Touch</a></header>
 <main>
 <section id="home" class="hero cinematic-hero">
 <div class="hero-frames" aria-hidden="true"><div class="hero-frame active" style="background-image:url('6224A7BC-592C-4949-9CFD-A8368D939929.jpeg')"></div></div>
-<div class="hero-inner"><h1 id="hero-message" aria-live="off">Dubai Interior Design &amp;<br>Fit-Out Specialists</h1><p>For Interior Designers and Property Owners</p></div>
+<div class="hero-inner"><span class="z4yn-hero-kicker">Z4YN <span class="z4yn-kicker-line"></span> DUBAI · UAE</span><h1 id="hero-message" aria-live="off">Dubai Interior Design &amp;<br>Fit-Out Specialists</h1><p>For Interior Designers and Property Owners</p><div class="z4yn-hero-actions"><a class="z4yn-hero-primary" href="#projects">Explore Our Work <span aria-hidden="true">↗</span></a><a class="z4yn-hero-secondary" href="#contact">Start a Project <span aria-hidden="true">↗</span></a></div></div><span class="z4yn-hero-side" aria-hidden="true">DESIGN · DETAIL · DISTINCTION</span><a class="z4yn-scroll-hint" href="#z4yn-audiences" aria-label="Scroll to discover more">SCROLL TO EXPLORE <span aria-hidden="true">↓</span></a>
 <div class="hero-controls" aria-label="Homepage slides"><button type="button" class="hero-arrow" data-dir="-1" aria-label="Previous slide">‹</button><button type="button" class="hero-dot active" data-slide="0" aria-label="Slide 1"></button><button type="button" class="hero-dot" data-slide="1" aria-label="Slide 2"></button><button type="button" class="hero-dot" data-slide="2" aria-label="Slide 3"></button><button type="button" class="hero-arrow" data-dir="1" aria-label="Next slide">›</button></div>
 </section>
 <section id="z4yn-audiences" class="z4yn-partners" aria-label="Our Trusted Partners">
