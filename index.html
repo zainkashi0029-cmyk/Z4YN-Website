@@ -101,7 +101,7 @@
 .z4yn-four-body a{margin-top:auto;align-self:flex-start;color:#806038;border-bottom:1px solid #b89968;font-size:12px;letter-spacing:1.4px;padding-bottom:7px}
 @media(max-width:850px){.z4yn-four-card{flex-basis:calc((100% - 16px)/2)}}@media(max-width:600px){.z4yn-four{padding:65px 6%}.z4yn-four-card{flex-basis:88%}.z4yn-four-art{height:160px}.z4yn-four-body{min-height:225px;padding:21px}}
 
-/* Continuous, seamless four-service marquee: complete circuit in five minutes */
+/* Continuous, seamless four-service marquee: complete circuit in twenty seconds */
 #z4yn-four-services .z4yn-four-window{display:block;overflow:hidden;scroll-snap-type:none;touch-action:pan-y}
 #z4yn-four-services .z4yn-four-track{display:flex;gap:16px;width:max-content;will-change:transform}
 #z4yn-four-services .z4yn-four-card{flex:0 0 clamp(260px,29vw,370px);width:clamp(260px,29vw,370px);scroll-snap-align:none}
@@ -263,8 +263,8 @@ setInterval(advanceFitnessSlides,2000)
    const fifth=track.children[4];
    const distance=fifth.offsetLeft-track.children[0].offsetLeft;
    if(distance>0){
-    const elapsed=(now-startTime)%300000;
-    track.style.transform='translate3d('+(-distance*elapsed/300000)+'px,0,0)';
+    const elapsed=(now-startTime)%20000;
+    track.style.transform='translate3d('+(-distance*elapsed/20000)+'px,0,0)';
    }
   }
   requestAnimationFrame(animate);
