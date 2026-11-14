@@ -283,7 +283,7 @@ setInterval(advanceFitnessSlides,2000)
   if(e.pointerType==='mouse'&&e.button!==0)return;
   pointer=e.pointerId;startX=lastX=e.clientX;dragged=false;
   viewport.classList.add('is-dragging');
-  pause(5000);
+  pause(3000);
   if(viewport.setPointerCapture)viewport.setPointerCapture(e.pointerId);
  });
  viewport.addEventListener('pointermove',e=>{
@@ -293,14 +293,14 @@ setInterval(advanceFitnessSlides,2000)
   lastX=e.clientX;
   const width=cycle();
   if(dragged&&width>0)pos=wrap(pos-dx,width);
-  pause(5000);
+  pause(3000);
  });
  function finish(e){
   if(pointer!==e.pointerId)return;
   pointer=null;
   viewport.classList.remove('is-dragging');
   if(dragged)suppressClickUntil=performance.now()+400;
-  pause(5000);
+  pause(3000);
  }
  viewport.addEventListener('pointerup',finish);
  viewport.addEventListener('pointercancel',finish);
@@ -311,7 +311,7 @@ setInterval(advanceFitnessSlides,2000)
   const width=cycle();if(width<=0)return;
   e.preventDefault();
   pos=wrap(pos+(e.deltaX||e.deltaY),width);
-  pause(5000);
+  pause(3000);
  },{passive:false});
  viewport.addEventListener('click',e=>{
   if(dragged||performance.now()<suppressClickUntil){
@@ -328,7 +328,7 @@ setInterval(advanceFitnessSlides,2000)
   if(e.target===viewport&&(e.key==='ArrowLeft'||e.key==='ArrowRight')){
    e.preventDefault();const width=cycle();
    if(width>0)pos=wrap(pos+(e.key==='ArrowRight'?230:-230),width);
-   pause(5000);
+   pause(3000);
   }
  });
  requestAnimationFrame(frame);
