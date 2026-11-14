@@ -256,7 +256,7 @@ setInterval(advanceFitnessSlides,2000)
   clone.removeAttribute('tabindex');clone.removeAttribute('role');
   track.appendChild(clone);
  });
- let pos=0,last=0,pointer=null,startX=0,lastX=0,dragged=false,hover=false;
+ let pos=0,last=0,pointer=null,startX=0,lastX=0,dragged=false;
  let resumeAfter=0,suppressClickUntil=0;
  function cycle(){
   return track.children[4].offsetLeft-track.children[0].offsetLeft;
@@ -272,7 +272,7 @@ setInterval(advanceFitnessSlides,2000)
   const dt=last?Math.min(now-last,100):0;
   last=now;
   if(width>0){
-   if(pointer===null&&!hover&&now>=resumeAfter){
+   if(pointer===null&&now>=resumeAfter){
     pos=wrap(pos+width*dt/20000,width);
    }
    track.style.transform='translate3d('+(-pos)+'px,0,0)';
@@ -292,7 +292,7 @@ setInterval(advanceFitnessSlides,2000)
   if(Math.abs(e.clientX-startX)>7)dragged=true;
   lastX=e.clientX;
   const width=cycle();
-  if(width>0)pos=wrap(pos-dx,width);
+  if(dragged&&width>0)pos=wrap(pos-dx,width);
   pause(5000);
  });
  function finish(e){
@@ -305,8 +305,7 @@ setInterval(advanceFitnessSlides,2000)
  viewport.addEventListener('pointerup',finish);
  viewport.addEventListener('pointercancel',finish);
  viewport.addEventListener('lostpointercapture',e=>{if(pointer===e.pointerId)finish(e)});
- viewport.addEventListener('mouseenter',()=>{hover=true});
- viewport.addEventListener('mouseleave',()=>{hover=false;pause(5000)});
+ // A touch event must never leave the slider paused indefinitely.
  viewport.addEventListener('wheel',e=>{
   if(!e.deltaX&&!e.shiftKey)return;
   const width=cycle();if(width<=0)return;
