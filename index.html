@@ -489,16 +489,13 @@ setInterval(advanceFitnessSlides,2000)
 (function(){
  const toggle=document.getElementById('z4yn-contact-toggle');
  const options=document.getElementById('z4yn-contact-options');
- let closeTimer;
  function setOpen(open){
-  clearTimeout(closeTimer);
   options.hidden=!open;
   toggle.setAttribute('aria-expanded',String(open));
   toggle.setAttribute('aria-label',open?'Close contact options':'Open contact options');
-  if(open)closeTimer=setTimeout(()=>setOpen(false),5000);
+
  }
  toggle.addEventListener('click',()=>setOpen(options.hidden));
- options.addEventListener('pointerdown',()=>{if(!options.hidden)setOpen(true)});
  document.addEventListener('pointerdown',e=>{if(!document.getElementById('z4yn-contact-fab').contains(e.target))setOpen(false)});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!options.hidden){setOpen(false);toggle.focus()}});
 })();
