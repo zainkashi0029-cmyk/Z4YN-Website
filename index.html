@@ -499,7 +499,7 @@ setInterval(advanceFitnessSlides,2000)
  }
  toggle.addEventListener('click',()=>setOpen(options.hidden));
  options.addEventListener('pointerdown',()=>{if(!options.hidden)setOpen(true)});
- document.addEventListener('click',e=>{if(!document.getElementById('z4yn-contact-fab').contains(e.target))setOpen(false)});
+ document.addEventListener('pointerdown',e=>{if(!document.getElementById('z4yn-contact-fab').contains(e.target))setOpen(false)});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!options.hidden){setOpen(false);toggle.focus()}});
 })();
 </script>
