@@ -109,6 +109,20 @@
       "images": [
         "6C36E4D5-EE5F-40BA-BEEA-FA818A9FF1A8.png"
       ]
+    },
+    {
+      "id": "villa-exteriors",
+      "title": "Residential Villas",
+      "category": "Residential",
+      "subtitle": "Villa exteriors · Architecture",
+      "images": [
+        "6224A7BC-592C-4949-9CFD-A8368D939929.jpeg",
+        "62D2F8C1-30E5-4008-801A-3266AC0CC2C9.png",
+        "9C71AF01-8F5C-4601-A57C-F9DD6C3B6B6C.png",
+        "9397A6DC-2A06-4AF0-AA4E-FD4E96994D42.jpeg",
+        "F9A1E385-50B1-4953-8391-D845E184B6C0.png",
+        "FFAE148B-C365-4D61-A921-6196295B08EA.jpeg"
+      ]
     }
   ]
 }
