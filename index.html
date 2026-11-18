@@ -526,4 +526,32 @@ setInterval(advanceFitnessSlides,2000)
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!options.hidden){setOpen(false);toggle.focus()}});
 })();
 </script>
+<style id="z4yn-project-fullview-style">
+#projects .project img{cursor:zoom-in!important;pointer-events:auto!important}
+#projects .fitness-slideshow .fitness-slide{pointer-events:none!important}
+#projects .fitness-slideshow .fitness-slide.active{pointer-events:auto!important;cursor:zoom-in!important}
+#z4yn-fullview{position:fixed;inset:0;z-index:99999;background:rgba(10,10,10,.96);display:none;align-items:center;justify-content:center;flex-direction:column;padding:56px 14px 28px;box-sizing:border-box}
+#z4yn-fullview.open{display:flex}
+#z4yn-fullview img{max-width:100%;max-height:calc(100dvh - 125px);width:auto;height:auto;object-fit:contain}
+#z4yn-fullview button{position:absolute;right:18px;top:14px;color:white;background:#272727;border:1px solid #777;border-radius:50%;width:40px;height:40px;font-size:26px;cursor:pointer}
+#z4yn-fullview p{color:#e8d5b1;font-size:14px;margin:12px 0 0;text-align:center}
+</style>
+<div id="z4yn-fullview" role="dialog" aria-modal="true" aria-label="Project photo full view"><button type="button" aria-label="Close full view">×</button><img alt=""><p></p></div>
+<script>
+(function(){
+ const viewer=document.getElementById('z4yn-fullview'), photo=viewer.querySelector('img'), caption=viewer.querySelector('p'), close=viewer.querySelector('button');
+ function hide(){viewer.classList.remove('open');photo.removeAttribute('src');document.body.style.overflow=''}
+ document.addEventListener('click',function(e){
+  const img=e.target.closest('#projects .project img');
+  if(!img||!img.classList.contains('active')&&img.classList.contains('fitness-slide'))return;
+  photo.src=img.currentSrc||img.src;
+  photo.alt=img.alt||'Project image';
+  caption.textContent=img.closest('.project')?.querySelector('h3')?.textContent||'Project';
+  viewer.classList.add('open');document.body.style.overflow='hidden';
+ });
+ close.addEventListener('click',hide);
+ viewer.addEventListener('click',e=>{if(e.target===viewer)hide()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&viewer.classList.contains('open'))hide()});
+})();
+</script>
 </body></html>
