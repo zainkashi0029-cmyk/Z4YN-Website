@@ -313,11 +313,16 @@ function advanceFitnessSlides(){
   const slides=[...box.querySelectorAll('.fitness-slide')];
   if(slides.length<2)return;
   const current=Math.max(0,slides.findIndex(s=>s.classList.contains('active')));
+  if(box.dataset.sliding==='yes')return;
+  box.dataset.sliding='yes';
+  const next=slides[(current+1)%slides.length];
+  slides[current].classList.add('slide-exit');
   slides[current].classList.remove('active');
-  slides[(current+1)%slides.length].classList.add('active');
+  next.classList.add('active');
+  setTimeout(()=>{slides[current].classList.remove('slide-exit');box.dataset.sliding='no'},750);
  });
 }
-setInterval(advanceFitnessSlides,2000)
+setInterval(advanceFitnessSlides,3000)
 </script><script>
 (async function(){
  try {
@@ -531,4 +536,8 @@ setInterval(advanceFitnessSlides,2000)
 #projects .project img{object-fit:contain!important;background:#f3f0ea!important;cursor:default!important;pointer-events:none!important}
 #projects .fitness-slideshow .fitness-slide{object-fit:contain!important;background:#f3f0ea!important;cursor:default!important;pointer-events:none!important}
 #projects .project img:hover{transform:none!important}
+</style><style id="z4yn-project-slide-motion">
+#projects .fitness-slideshow .fitness-slide{opacity:1!important;transform:translateX(100%);transition:transform .7s ease-in-out!important;will-change:transform}
+#projects .fitness-slideshow .fitness-slide.active{transform:translateX(0);z-index:2}
+#projects .fitness-slideshow .fitness-slide.slide-exit{transform:translateX(-100%);z-index:1}
 </style></body></html>
