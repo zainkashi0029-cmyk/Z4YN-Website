@@ -259,12 +259,14 @@ footer .footgrid a:hover{color:#e5b96f!important}
 .z4yn-contact-options svg{width:20px;height:20px;flex:none;color:#d5af76;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .z4yn-contact-options .z4yn-contact-label{display:block;font-size:10px;color:#ae9c83;letter-spacing:.4px;margin-top:3px}
 @media(max-width:580px){.z4yn-contact-fab{right:16px;bottom:calc(18px + env(safe-area-inset-bottom,0px))}}
+/* Five-photo villa homepage slideshow, preserving the rest of the site */
+.cinematic-hero .hero-frame{transition:opacity .65s ease!important}
 </style></head><body>
 <div class="topbar"><span>DUBAI, UNITED ARAB EMIRATES</span><span>INTERIOR DESIGN&nbsp; • &nbsp; INTERIOR FIT-OUT&nbsp; • &nbsp; BESPOKE JOINERY</span></div>
 <header class="nav"><a class="logo" href="#home">Z<span>4</span>YN</a><button class="menu z4yn-eye-menu" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="z4yn-nav-links" onclick="const links=document.getElementById('z4yn-nav-links');const open=links.classList.toggle('show');this.setAttribute('aria-expanded',String(open));this.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3.2"/></svg></button><nav id="z4yn-nav-links" class="links"><a class="active" href="#home">Home</a><a href="#z4yn-four-services">Design & Fit-Out</a><a href="#z4yn-four-services">Services</a><a href="#projects">Projects</a><a href="#who-we-are">About</a></nav></header>
 <main>
 <section id="home" class="hero cinematic-hero">
-<div class="hero-frames" aria-hidden="true"><div class="hero-frame active" style="background-image:url('6224A7BC-592C-4949-9CFD-A8368D939929.jpeg')"></div></div>
+<div class="hero-frames" aria-hidden="true"><div class="hero-frame active" style="background-image:url('62D2F8C1-30E5-4008-801A-3266AC0CC2C9.png')"></div><div class="hero-frame" style="background-image:url('9C71AF01-8F5C-4601-A57C-F9DD6C3B6B6C.png')"></div><div class="hero-frame" style="background-image:url('9397A6DC-2A06-4AF0-AA4E-FD4E96994D42.jpeg')"></div><div class="hero-frame" style="background-image:url('F9A1E385-50B1-4953-8391-D845E184B6C0.png')"></div><div class="hero-frame" style="background-image:url('FFAE148B-C365-4D61-A921-6196295B08EA.jpeg')"></div></div>
 <span class="z4yn-hero-kicker z4yn-hero-kicker-fixed">WELCOME TO Z4YN INTERIOR DESIGN &amp; FIT-OUT</span><div class="hero-inner"><h1 id="hero-message" aria-live="off">Spaces With Purpose.<br>Designed With Distinction.</h1><p>Interior Design. Fit-Out. Bespoke Joinery.</p></div>
 
 </section>
@@ -339,17 +341,19 @@ setInterval(advanceFitnessSlides,2000)
  const host=document.querySelector('.cinematic-hero');
  if(!host)return;
  const title=host.querySelector('#hero-message');
+ const frames=[...host.querySelectorAll('.hero-frame')];
  const dots=[...host.querySelectorAll('.hero-dot')];
  const headlines=[
   'Spaces With Purpose.<br>Designed With Distinction.',
   'Exceptional Interiors.<br>Thoughtfully Delivered.',
   'Interior Fit-Out.<br>Design &amp; Bespoke Joinery.'
  ];
- if(!title)return;
+ if(!title||!frames.length)return;
  let active=0;
  function showSlide(i){
-  active=(i+headlines.length)%headlines.length;
-  title.innerHTML=headlines[active];
+  active=(i+frames.length)%frames.length;
+  frames.forEach((frame,n)=>frame.classList.toggle('active',n===active));
+  title.innerHTML=headlines[active%headlines.length];
   dots.forEach((dot,n)=>dot.classList.toggle('active',n===active));
  }
  host.querySelectorAll('.hero-arrow').forEach(btn=>btn.addEventListener('click',()=>showSlide(active+Number(btn.dataset.dir))));
