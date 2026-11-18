@@ -308,21 +308,33 @@ document.addEventListener('error', event => {
 .project img{pointer-events:none;cursor:default}.fitness-slideshow .fitness-slide{pointer-events:none;cursor:default}
 .fitness-slideshow{cursor:default}
 </style><script>
-function advanceFitnessSlides(){
- document.querySelectorAll('.fitness-slideshow').forEach(box=>{
+(function(){
+ const timings=[3000,4000,5000,6000];
+ let assigned=0;
+ function setup(box){
+  if(box.dataset.sliderStarted==='yes')return;
   const slides=[...box.querySelectorAll('.fitness-slide')];
   if(slides.length<2)return;
-  const current=Math.max(0,slides.findIndex(s=>s.classList.contains('active')));
-  if(box.dataset.sliding==='yes')return;
-  box.dataset.sliding='yes';
-  const next=slides[(current+1)%slides.length];
-  slides[current].classList.add('slide-exit');
-  slides[current].classList.remove('active');
-  next.classList.add('active');
-  setTimeout(()=>{slides[current].classList.remove('slide-exit');box.dataset.sliding='no'},750);
- });
-}
-setInterval(advanceFitnessSlides,3000)
+  box.dataset.sliderStarted='yes';
+  const delay=timings[assigned++%timings.length];
+  function advance(){
+   if(!box.isConnected)return;
+   if(box.dataset.sliding==='yes')return;
+   const current=Math.max(0,slides.findIndex(s=>s.classList.contains('active')));
+   const next=slides[(current+1)%slides.length];
+   box.dataset.sliding='yes';
+   slides[current].classList.add('slide-exit');
+   slides[current].classList.remove('active');
+   next.classList.add('active');
+   setTimeout(()=>{slides[current].classList.remove('slide-exit');box.dataset.sliding='no'},750);
+  }
+  const timer=setInterval(()=>{if(!box.isConnected){clearInterval(timer);return}advance()},delay);
+ }
+ function scan(){document.querySelectorAll('#projects .fitness-slideshow').forEach(setup)}
+ scan();
+ const target=document.querySelector('#projects .projects');
+ if(target)new MutationObserver(scan).observe(target,{childList:true});
+})();
 </script><script>
 (async function(){
  try {
