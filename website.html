@@ -320,13 +320,27 @@ document.addEventListener('error', event => {
   function advance(){
    if(!box.isConnected)return;
    if(box.dataset.sliding==='yes')return;
+   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!box.getClientRects().length)return;
    const current=Math.max(0,slides.findIndex(s=>s.classList.contains('active')));
    const next=slides[(current+1)%slides.length];
    box.dataset.sliding='yes';
-   slides[current].classList.add('slide-exit');
-   slides[current].classList.remove('active');
-   next.classList.add('active');
-   setTimeout(()=>{slides[current].classList.remove('slide-exit');box.dataset.sliding='no'},750);
+   next.loading='eager';
+   const begin=()=>{
+    if(!box.isConnected||!next.naturalWidth){box.dataset.sliding='no';return;}
+    next.classList.add('incoming');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+     next.classList.add('visible');
+     setTimeout(()=>{
+      next.classList.add('active');
+      slides[current].classList.remove('active');
+      next.classList.remove('incoming','visible');
+      box.dataset.sliding='no';
+     },1350);
+    }));
+   };
+   if(typeof next.decode==='function')next.decode().then(begin).catch(()=>{box.dataset.sliding='no'});
+   else if(next.complete)begin();
+   else{next.addEventListener('load',begin,{once:true});next.addEventListener('error',()=>{box.dataset.sliding='no'},{once:true});}
   }
   const timer=setInterval(()=>{if(!box.isConnected){clearInterval(timer);return}advance()},delay);
  }
@@ -521,7 +535,10 @@ document.addEventListener('error', event => {
 </script>
 
 <style id="z4yn-project-slide-motion">
-#projects .fitness-slideshow .fitness-slide{opacity:1!important;transform:translateX(100%);transition:transform .7s ease-in-out!important;will-change:transform}
-#projects .fitness-slideshow .fitness-slide.active{transform:translateX(0);z-index:2}
-#projects .fitness-slideshow .fitness-slide.slide-exit{transform:translateX(-100%);z-index:1}
+#projects .fitness-slideshow{isolation:isolate}
+#projects .fitness-slideshow .fitness-slide{opacity:0!important;transform:none!important;transition:none!important;z-index:0;will-change:auto}
+#projects .fitness-slideshow .fitness-slide.active{opacity:1!important;z-index:1}
+#projects .fitness-slideshow .fitness-slide.incoming{opacity:0!important;z-index:2;transition:opacity 1.3s cubic-bezier(.42,0,.58,1)!important;will-change:opacity}
+#projects .fitness-slideshow .fitness-slide.incoming.visible{opacity:1!important}
+@media(prefers-reduced-motion:reduce){#projects .fitness-slideshow .fitness-slide.incoming{transition:none!important}}
 </style></body></html>
