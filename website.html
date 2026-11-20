@@ -309,42 +309,46 @@ document.addEventListener('error', event => {
 .fitness-slideshow{cursor:default}
 </style><script>
 (function(){
- const timings=[3000,4000,5000,6000];
+ const secondsPerImage=[6,7,8,9];
  let assigned=0;
- function setup(box){
+ const motion=matchMedia('(prefers-reduced-motion: reduce)');
+ async function ready(img){
+  img.loading='eager';
+  try{
+   if(typeof img.decode==='function')await img.decode();
+   else if(!img.complete)await new Promise((resolve,reject)=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',reject,{once:true});});
+   return img.naturalWidth>0;
+  }catch(e){return false;}
+ }
+ async function setup(box){
   if(box.dataset.sliderStarted==='yes')return;
   const slides=[...box.querySelectorAll('.fitness-slide')];
   if(slides.length<2)return;
   box.dataset.sliderStarted='yes';
-  const delay=timings[assigned++%timings.length];
-  function advance(){
-   if(!box.isConnected)return;
-   if(box.dataset.sliding==='yes')return;
-   if(matchMedia('(prefers-reduced-motion: reduce)').matches||!box.getClientRects().length)return;
-   const current=Math.max(0,slides.findIndex(s=>s.classList.contains('active')));
-   const next=slides[(current+1)%slides.length];
-   box.dataset.sliding='yes';
-   next.loading='eager';
-   const begin=()=>{
-    if(!box.isConnected||!next.naturalWidth){box.dataset.sliding='no';return;}
-    next.classList.add('incoming');
-    requestAnimationFrame(()=>requestAnimationFrame(()=>{
-     next.classList.add('visible');
-     setTimeout(()=>{
-      next.classList.add('active');
-      slides[current].classList.remove('active');
-      next.classList.remove('incoming','visible');
-      box.dataset.sliding='no';
-     },1350);
-    }));
-   };
-   if(typeof next.decode==='function')next.decode().then(begin).catch(()=>{box.dataset.sliding='no'});
-   else if(next.complete)begin();
-   else{next.addEventListener('load',begin,{once:true});next.addEventListener('error',()=>{box.dataset.sliding='no'},{once:true});}
+  const speed=secondsPerImage[assigned++%secondsPerImage.length];
+  const results=await Promise.all(slides.map(ready));
+  if(!box.isConnected)return;
+  const usable=slides.filter((_,n)=>results[n]);
+  if(!usable.length)return;
+  const track=document.createElement('div');
+  track.className='project-motion-track';
+  usable.forEach((img,n)=>{img.classList.toggle('active',n===0);track.appendChild(img);});
+  if(usable.length>1){
+   const clone=usable[0].cloneNode(true);
+   clone.classList.remove('active');
+   clone.alt='';clone.setAttribute('aria-hidden','true');
+   track.appendChild(clone);
+   track.style.setProperty('--project-loop-distance',(-100*usable.length)+'%');
+   track.style.setProperty('--project-loop-duration',(speed*usable.length)+'s');
+   track.classList.add('is-looping');
   }
-  const timer=setInterval(()=>{if(!box.isConnected){clearInterval(timer);return}advance()},delay);
+  box.replaceChildren(track);
+  if(usable.length>1&&'IntersectionObserver' in window){
+   const observer=new IntersectionObserver(([entry])=>{if(!box.isConnected){observer.disconnect();return;}track.classList.toggle('is-paused',!entry.isIntersecting);});
+   observer.observe(box);
+  }
  }
- function scan(){document.querySelectorAll('#projects .fitness-slideshow').forEach(setup)}
+ function scan(){document.querySelectorAll('#projects .fitness-slideshow').forEach(setup);}
  scan();
  const target=document.querySelector('#projects .projects');
  if(target)new MutationObserver(scan).observe(target,{childList:true});
@@ -535,10 +539,13 @@ document.addEventListener('error', event => {
 </script>
 
 <style id="z4yn-project-slide-motion">
-#projects .fitness-slideshow{isolation:isolate}
-#projects .fitness-slideshow .fitness-slide{opacity:0!important;transform:none!important;transition:none!important;z-index:0;will-change:auto}
-#projects .fitness-slideshow .fitness-slide.active{opacity:1!important;z-index:1}
-#projects .fitness-slideshow .fitness-slide.incoming{opacity:0!important;z-index:2;transition:opacity 1.3s cubic-bezier(.42,0,.58,1)!important;will-change:opacity}
-#projects .fitness-slideshow .fitness-slide.incoming.visible{opacity:1!important}
-@media(prefers-reduced-motion:reduce){#projects .fitness-slideshow .fitness-slide.incoming{transition:none!important}}
+#projects .fitness-slideshow{isolation:isolate;overflow:hidden}
+#projects .fitness-slideshow > .fitness-slide{opacity:0!important;transform:none!important;transition:none!important}
+#projects .fitness-slideshow > .fitness-slide.active{opacity:1!important}
+#projects .project-motion-track{display:flex;position:absolute;inset:0;width:100%;height:100%;gap:0;transform:translate3d(0,0,0);transition:none;will-change:transform}
+#projects .project-motion-track .fitness-slide{position:relative;inset:auto;flex:0 0 100%;width:100%;min-width:100%;height:100%;object-fit:cover;opacity:1!important;transform:none!important;transition:none!important;pointer-events:none}
+#projects .project-motion-track.is-looping{animation:projectContinuousSlide var(--project-loop-duration) linear infinite}
+#projects .project-motion-track.is-paused{animation-play-state:paused}
+@keyframes projectContinuousSlide{from{transform:translate3d(0,0,0)}to{transform:translate3d(var(--project-loop-distance),0,0)}}
+@media(prefers-reduced-motion:reduce){#projects .project-motion-track.is-looping{animation:none}}
 </style></body></html>
