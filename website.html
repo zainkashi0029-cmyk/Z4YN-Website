@@ -309,44 +309,44 @@ document.addEventListener('error', event => {
 .fitness-slideshow{cursor:default}
 </style><script>
 (function(){
- const secondsPerImage=[6,7,8,9];
+ const secondsPerImage=[6,7.5,9];
  let assigned=0;
- const motion=matchMedia('(prefers-reduced-motion: reduce)');
- async function ready(img){
-  img.loading='eager';
-  try{
-   if(typeof img.decode==='function')await img.decode();
-   else if(!img.complete)await new Promise((resolve,reject)=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',reject,{once:true});});
-   return img.naturalWidth>0;
-  }catch(e){return false;}
+ function ready(img){
+  return new Promise(resolve=>{
+   let finished=false,timer;
+   function done(ok){if(finished)return;finished=true;clearTimeout(timer);img.removeEventListener('load',loaded);img.removeEventListener('error',failed);resolve(ok);}
+   function loaded(){done(img.naturalWidth>0);}
+   function failed(){done(false);}
+   img.addEventListener('load',loaded);
+   img.addEventListener('error',failed);
+   img.loading='eager';
+   if(img.complete&&img.naturalWidth>0){loaded();return;}
+   timer=setTimeout(()=>done(img.naturalWidth>0),18000);
+  });
  }
  async function setup(box){
   if(box.dataset.sliderStarted==='yes')return;
-  const slides=[...box.querySelectorAll('.fitness-slide')];
+  const slides=Array.from(box.querySelectorAll('.fitness-slide'));
   if(slides.length<2)return;
   box.dataset.sliderStarted='yes';
   const speed=secondsPerImage[assigned++%secondsPerImage.length];
   const results=await Promise.all(slides.map(ready));
   if(!box.isConnected)return;
   const usable=slides.filter((_,n)=>results[n]);
-  if(!usable.length)return;
+  if(usable.length<2)return;
+  const count=usable.length;
   const track=document.createElement('div');
   track.className='project-motion-track';
-  usable.forEach((img,n)=>{img.classList.toggle('active',n===0);track.appendChild(img);});
-  if(usable.length>1){
-   const clone=usable[0].cloneNode(true);
-   clone.classList.remove('active');
-   clone.alt='';clone.setAttribute('aria-hidden','true');
-   track.appendChild(clone);
-   track.style.setProperty('--project-loop-distance',(-100*usable.length)+'%');
-   track.style.setProperty('--project-loop-duration',(speed*usable.length)+'s');
-   track.classList.add('is-looping');
-  }
+  track.style.width=((count+1)*100)+'%';
+  track.style.setProperty('--project-slide-width',(100/(count+1))+'%');
+  track.style.setProperty('--project-loop-distance',(-100*count/(count+1))+'%');
+  track.style.setProperty('--project-loop-duration',(speed*count)+'s');
+  usable.forEach(img=>{img.classList.remove('active');track.appendChild(img);});
+  const clone=usable[0].cloneNode(true);
+  clone.alt='';clone.setAttribute('aria-hidden','true');
+  track.appendChild(clone);
   box.replaceChildren(track);
-  if(usable.length>1&&'IntersectionObserver' in window){
-   const observer=new IntersectionObserver(([entry])=>{if(!box.isConnected){observer.disconnect();return;}track.classList.toggle('is-paused',!entry.isIntersecting);});
-   observer.observe(box);
-  }
+  track.classList.add('is-looping');
  }
  function scan(){document.querySelectorAll('#projects .fitness-slideshow').forEach(setup);}
  scan();
@@ -542,10 +542,9 @@ document.addEventListener('error', event => {
 #projects .fitness-slideshow{isolation:isolate;overflow:hidden}
 #projects .fitness-slideshow > .fitness-slide{opacity:0!important;transform:none!important;transition:none!important}
 #projects .fitness-slideshow > .fitness-slide.active{opacity:1!important}
-#projects .project-motion-track{display:flex;position:absolute;inset:0;width:100%;height:100%;gap:0;transform:translate3d(0,0,0);transition:none;will-change:transform}
-#projects .project-motion-track .fitness-slide{position:relative;inset:auto;flex:0 0 100%;width:100%;min-width:100%;height:100%;object-fit:cover;opacity:1!important;transform:none!important;transition:none!important;pointer-events:none}
+#projects .project-motion-track{display:flex;position:absolute;top:0;left:0;height:100%;gap:0;transform:translate3d(0,0,0);transition:none;will-change:transform}
+#projects .project-motion-track .fitness-slide{display:block;position:relative;inset:auto;flex:0 0 var(--project-slide-width);width:var(--project-slide-width);min-width:0;max-width:none;height:100%;object-fit:cover;opacity:1!important;transform:none!important;transition:none!important;pointer-events:none}
 #projects .project-motion-track.is-looping{animation:projectContinuousSlide var(--project-loop-duration) linear infinite}
-#projects .project-motion-track.is-paused{animation-play-state:paused}
-@keyframes projectContinuousSlide{from{transform:translate3d(0,0,0)}to{transform:translate3d(var(--project-loop-distance),0,0)}}
+@keyframes projectContinuousSlide{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(var(--project-loop-distance),0,0)}}
 @media(prefers-reduced-motion:reduce){#projects .project-motion-track.is-looping{animation:none}}
 </style></body></html>
